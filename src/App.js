@@ -6,8 +6,7 @@ const App = () => {
 
   useEffect(() => {
     async function fetchData() {
-      let response = await 
-      fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+      await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
       .then(response => response.json())
       .then (result => {
         setState(result);
