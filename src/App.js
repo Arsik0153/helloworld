@@ -1,23 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
 
-function App() {
+const App = () => {
+
+  const [state, setState] = useState();
+
+  useEffect( async () => {
+    let response = await 
+      fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
+      .then(response => response.json())
+      .then (result => {
+        setState(result);
+        console.log(result)
+      });
+  }, [])
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Hello world</h1>
+      {state && (
+        <p>{state[0].sha}</p>
+      )}
     </div>
   );
 }
